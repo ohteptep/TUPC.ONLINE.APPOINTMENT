@@ -1,0 +1,199 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sidenav.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.0/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Office of Academic Affair</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg logo">
+        <img src="{% static '/img/tupclogo.png' %}" width="120" height="120" alt="">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+          <ul class="navbar-nav tup">
+            <li class="nav-item active">
+              <h1>TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES - CAVITE CAMPUS</h1>
+              <p>Online Appointment</p>
+            </li>
+          </ul>
+      </nav>
+
+
+<!-- The sidebar -->
+
+  <div class="d-flex" id="wrapper">
+    <!-- Sidebar-->
+    <div class="border-end bg-white" id="sidebar-wrapper">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'logout' %}">LOGOUT</a>
+        </div>
+    </div>
+    <!-- Page content wrapper-->
+    <div id="page-content-wrapper">
+        <!-- Top navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button"  id="sidebarToggle"><span class="navbar-toggler-icon"></span></button>
+              
+            </div>
+        </nav>
+        <!-- Page content-->
+        <h4>PENDING APPOINTMENT</h4>
+        <div class="container-fluid">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Type</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Purpose</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for oaa in alumnidata %}
+              <tr>
+                {% if oaa.status == 'Inbox' %}
+                  <td>Alumni</td>
+                  <td>{{ oaa.Aname }} {{ oaa.Alast }}</td>
+                  <td>{{ oaa.Adate }}</td>
+                  <td>{{ oaa.Apurp }}</td>
+                  <td>
+                    <a href="{% url 'confirm1' oaa.id %}" class="btn btn-primary"><i class='bx bx-check'></i></a>
+                    <a href="{% url 'denied1' oaa.id %}" class="btn btn-danger"><i class='bx bx-x'></i></a>
+                    <a href="{% url 'viewing1' oaa.id %}" class="btn btn-info"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+                      <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                      <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+                    </svg></a>
+                  <!--<button class="btn btn-secondary"><i class='bx bx-trash'></i></button>--> 
+                  </td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+              {% for oaa in studentdata %}
+              <tr>
+                {% if oaa.status == 'Inbox' %}
+                  <td>Student</td>
+                  <td>{{ oaa.Sname }} {{ oaa.Slast }}</td>
+                  <td>{{ oaa.Sdate }}</td>
+                  <td>{{ oaa.Spurp }}</td>
+                  <td>
+                    <a href="{% url 'confirm2' oaa.id %}" class="btn btn-primary"><i class='bx bx-check'></i></a>
+                    <a href="{% url 'denied2' oaa.id %}" class="btn btn-danger"><i class='bx bx-x'></i></a>
+                    <a href="{% url 'viewing2' oaa.id %}" class="btn btn-info"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+                      <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                      <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+                    </svg></a>
+                    <!--<button class="btn btn-secondary"><i class='bx bx-trash'></i></button>--> 
+                  </td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+              {% for oaa in guardiandata %}
+              <tr>
+                {% if oaa.status == 'Inbox' %}
+                  <td>Guardian</td>
+                  <td>{{ oaa.Ggname }} {{ oaa.Glast }}</td>
+                  <td>{{ oaa.Gdate }}</td>
+                  <td>{{ oaa.Gpurp }}</td>
+                  <td>
+                    <a href="{% url 'confirm3' oaa.id %}" class="btn btn-primary"><i class='bx bx-check'></i></a>
+                    <a href="{% url 'denied3' oaa.id %}" class="btn btn-danger"><i class='bx bx-x'></i></a>
+                    <a href="{% url 'viewing3' oaa.id %}" class="btn btn-info"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+                      <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                      <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+                    </svg></a>
+                    <!--<button class="btn btn-secondary"><i class='bx bx-trash'></i></button>--> 
+                  </td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <h4>APPOINTMENT CONFIRMATION</h4>
+
+        <div class="container-fluid">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Type</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Purpose</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for oaa in alumnidata %}
+              <tr>
+                {% if oaa.status == 'CONFIRMED' or oaa.status == 'DENIED' %}
+                  <td>Alumni</td>
+                  <td>{{ oaa.Aname }} {{ oaa.Alast }}</td>
+                  <td>{{ oaa.Adate }}</td>
+                  <td>{{ oaa.Apurp }}</td>
+                  {% if oaa.status == 'CONFIRMED' %}
+                    <td><span style="color: green;">{{ oaa.status }}</span></td>
+                  {% elif oaa.status == 'DENIED' %}
+                    <td><span style="color: red;">{{ oaa.status }}</span></td>
+                  {% endif %}
+                {% endif %}
+              </tr>
+              {% endfor %}
+              {% for oaa in studentdata %}
+              <tr>
+                {% if oaa.status == 'CONFIRMED' or oaa.status == 'DENIED' %}
+                  <td>Student</td>
+                  <td>{{ oaa.Sname }} {{ oaa.Slast }}</td>
+                  <td>{{ oaa.Sdate }}</td>
+                  <td>{{ oaa.Spurp }}</td>
+                  {% if oaa.status == 'CONFIRMED' %}
+                    <td><span style="color: green;">{{ oaa.status }}</span></td>
+                  {% elif oaa.status == 'DENIED' %}
+                    <td><span style="color: red;">{{ oaa.status }}</span></td>
+                  {% endif %}
+                {% endif %}
+              </tr>
+              {% endfor %}
+              {% for oaa in guardiandata %}
+              <tr>
+                {% if oaa.status == 'CONFIRMED' or oaa.status == 'DENIED' %}
+                  <td>Guardian</td>
+                  <td>{{ oaa.Ggname }} {{ oaa.Glast }}</td>
+                  <td>{{ oaa.Gdate }}</td>
+                  <td>{{ oaa.Gpurp }}</td>
+                  {% if oaa.status == 'CONFIRMED' %}
+                    <td><span style="color: green;">{{ oaa.status }}</span></td>
+                  {% elif oaa.status == 'DENIED' %}
+                    <td><span style="color: red;">{{ oaa.status }}</span></td>
+                  {% endif %}
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+<script src="{% static 'js/nav.js' %}"></script>
+</body>
+</html>
+
+

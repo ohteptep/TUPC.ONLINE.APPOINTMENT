@@ -1,0 +1,68 @@
+.logo{
+    padding: 50px !important;
+    background-color: #800000;
+    color: white;
+  }
+  
+  @media only screen and (max-width: 700px) {
+  .tup {
+    font-size: 20px;
+  }
+  }
+  
+  .login {
+    background-color: #800000;
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+    border: none;
+  }
+  
+  .login:hover {
+    background-color: #bf7f7f;
+  }
+  
+  .pushbutton{
+    padding-top: 10px;
+    padding-left: 10px;
+  }
+
+  .btn-danger{
+      background-color: #800000 !important;
+      height: 60px;
+  }
+  
+  /* STUDENT/ ADMIN LOG IN  */
+  
+  
+    a {
+      color: #92badd;
+      display:inline-block;
+      text-decoration: none;
+      font-weight: 400;
+    }
+    
+    h2 {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      display:inline-block;
+      margin: 40px 8px 10px 8px; 
+      color: #cccccc;
+    }
+    
+    .title{
+      text-align: center;
+    }
+
+    .footeralumni{
+      align-self: right;
+    }
+
+    
+    
+   
+   
+  
+ 

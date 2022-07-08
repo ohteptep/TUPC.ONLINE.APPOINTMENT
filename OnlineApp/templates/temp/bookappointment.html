@@ -1,0 +1,313 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/book.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <title>Book An Appointment</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg logo">
+        <img src="{% static '/img/tupclogo.png' %}" width="120" height="100" alt="">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+          <ul class="navbar-nav tup">
+            <li class="nav-item active">
+              <h1>TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES - CAVITE CAMPUS</h1>
+              <p>Online Appointment</p>
+            </li>
+          </ul>
+    </nav>
+   
+    <br><br>
+
+<!-- TABLE FOR FORM -->
+<div class = "card container w-50" >
+  <div class = "card-body">
+    <div class="text-center">
+      <h2 style="color: #800000">Book an Appointment</h2>
+    </div>
+    <br>
+    <div class="text-center">
+      <a class="btn btn-danger w-50 " type="button" href="{% url 'alumniform' %}">ALUMNUS</a>
+      <br><br>
+      <a class="btn btn-danger w-50 " type="button" href="{% url 'studentform' %}">STUDENTS</a>
+      <br><br>
+      <a class="btn btn-danger w-50 " type="button" href="{% url 'guardianform' %}">GUARDIAN</a>
+      <br><br>     
+      <a class="btn btn-danger w-50" type="button" href="{% url 'logoutwa' %}">LOGOUT</a>     
+    </div>
+  </div>
+  <br>
+</div>
+
+
+<!-- Modal Alumnus -->
+<div class="modal fade" id="alumnusModal" tabindex="-1" role="dialog"  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Alumnus Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="">
+          <div class="text-center">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" id="fname" placeholder="First Name">
+              </div>
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" id="lname" placeholder="Last Name">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <input type="text" class="form-control" id="emails" placeholder="Email">
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="student_id" placeholder="Student I.D">
+              </div>
+              <div class="form-group col-md-4">
+                <select name="" id="course" class="form-control">
+                  <option value="BGT-AT">BGT-AT</option>
+                  <option value="BET-ET">BET-ET</option>
+                  <option value="BET-ESET">BET-ESET</option>
+                  <option value="BET-COET">BET-COET</option>
+                  <option value="BET-CT">BET-CT</option>
+                  <option value="BET-MT">BET-MT</option>
+                  <option value="BET-AT">BET-AT</option>
+                  <option value="BET-PPT">BET-PPT</option>
+                  <option value="BSIE-IA">BSIE-IA</option>
+                  <option value="BSIE-ICT">BSIE-ICT</option>
+                  <option value="BSCE">BSCE</option>
+                  <option value="BSEE">BSEE</option>
+                  <option value="BSME">BSME</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <input type="text" id="year" class="form-control" placeholder="Year Graduated">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input type="date" id="dates" class="form-control" >
+              </div>
+              <div class="form-group col-md-6">
+                <select name="" id="depts" class="form-control">
+                  <option value="Office of Academic Affairs">Office of Academic Affairs</option>
+                  <option value="Office of Campus Registrar">Office of Campus Registrar</option>
+                  <option value="Office of the Guidance Services">Office of the Guidance Services</option>
+                  <option value="Campus Library">Campus Library</option>
+                  <option value="Office of Health Services">Office of Health Services</option>
+                  <option value="University Information Technology Center">University Information Technology Center</option>
+                  <option value="University Student Government">University Student Government</option>
+                  <option value="Office of Student Affairs">Office of Student Affairs</option>
+                  <option value="Alumni Office">Alumni Office</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="purpose" placeholder="Purpose of Appointment">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="bookAlumnus">Book Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Student -->
+<div class="modal fade" id="studentModal" tabindex="-1" role="dialog"  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Student Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="">
+          <div class="text-center">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" id="fnames" placeholder="First Name">
+              </div>
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" id="lnames" placeholder="Last Name">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <input type="text" class="form-control" id="emailss" placeholder="Email">
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="idstudent" placeholder="Student I.D">
+              </div>
+              <div class="form-group col-md-4">
+                <select name="" id="course" class="form-control">
+                  <option value="BGT-AT">BGT-AT</option>
+                  <option value="BET-ET">BET-ET</option>
+                  <option value="BET-ESET">BET-ESET</option>
+                  <option value="BET-COET">BET-COET</option>
+                  <option value="BET-CT">BET-CT</option>
+                  <option value="BET-MT">BET-MT</option>
+                  <option value="BET-AT">BET-AT</option>
+                  <option value="BET-PPT">BET-PPT</option>
+                  <option value="BSIE-IA">BSIE-IA</option>
+                  <option value="BSIE-ICT">BSIE-ICT</option>
+                  <option value="BSCE">BSCE</option>
+                  <option value="BSEE">BSEE</option>
+                  <option value="BSME">BSME</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <select name="" id="years" class="form-control">
+                  <option value="First Year">First Year</option>
+                  <option value="Second Year">Second Year</option>
+                  <option value="Third Year">Third Year</option>
+                  <option value="Fourth Year">Fourth Year</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input type="date" id="datess" class="form-control" >
+              </div>
+              <div class="form-group col-md-6">
+                <select name="" id="depts" class="form-control">
+                  <option value="Office of Academic Affairs">Office of Academic Affairs</option>
+                  <option value="Office of Campus Registrar">Office of Campus Registrar</option>
+                  <option value="Office of the Guidance Services">Office of the Guidance Services</option>
+                  <option value="Campus Library">Campus Library</option>
+                  <option value="Office of Health Services">Office of Health Services</option>
+                  <option value="University Information Technology Center">University Information Technology Center</option>
+                  <option value="University Student Government">University Student Government</option>
+                  <option value="Office of Student Affairs">Office of Student Affairs</option>
+                  <option value="Alumni Office">Alumni Office</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="purposes" placeholder="Purpose of Appointment">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="bookStudent">Book Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Guardian -->
+<div class="modal fade" id="guardianModal" tabindex="-1" role="dialog"  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Guardian Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="">
+          <div class="text-center">
+            <div class="form-group">
+              <input type="text" class="form-control" id="guardians" placeholder="Guardian Name">
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" id="ffname" placeholder="Student First Name">
+              </div>
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" id="llname" placeholder="Student Last Name">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <input type="text" class="form-control" id="eemails" placeholder="Email">
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" id="studentid" placeholder="Student I.D">
+              </div>
+              <div class="form-group col-md-6">
+                <select name="" id="courses" class="form-control">
+                  <option value="BGT-AT">BGT-AT</option>
+                  <option value="BET-ET">BET-ET</option>
+                  <option value="BET-ESET">BET-ESET</option>
+                  <option value="BET-COET">BET-COET</option>
+                  <option value="BET-CT">BET-CT</option>
+                  <option value="BET-MT">BET-MT</option>
+                  <option value="BET-AT">BET-AT</option>
+                  <option value="BET-PPT">BET-PPT</option>
+                  <option value="BSIE-IA">BSIE-IA</option>
+                  <option value="BSIE-ICT">BSIE-ICT</option>
+                  <option value="BSCE">BSCE</option>
+                  <option value="BSEE">BSEE</option>
+                  <option value="BSME">BSME</option>
+                </select>
+              </div>
+            
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input type="date" id="datesss" class="form-control" >
+              </div>
+              <div class="form-group col-md-6">
+                <select name="" id="depts" class="form-control">
+                  <option value="Office of Academic Affairs">Office of Academic Affairs</option>
+                  <option value="Office of Campus Registrar">Office of Campus Registrar</option>
+                  <option value="Office of the Guidance Services">Office of the Guidance Services</option>
+                  <option value="Campus Library">Campus Library</option>
+                  <option value="Office of Health Services">Office of Health Services</option>
+                  <option value="University Information Technology Center">University Information Technology Center</option>
+                  <option value="University Student Government">University Student Government</option>
+                  <option value="Office of Student Affairs">Office of Student Affairs</option>
+                  <option value="Alumni Office">Alumni Office</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="purpos" placeholder="Purpose of Appointment">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="bookGuardian">Book Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+  <script src="{% static 'js/functions.js' %}"></script>
+
+</body>
+</html>

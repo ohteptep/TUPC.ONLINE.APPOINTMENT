@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.0/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>TUPC OA</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg logo">
+        <img src="{% static '/img/tupclogo.png' %}" width="120" height="120" alt="">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+          <ul class="navbar-nav tup">
+            <li class="nav-item active">
+              <h1>TECHNOLOGICAL UNIVERSITY OF THE PHILIPPINES - CAVITE CAMPUS</h1>
+              <p>Online Appointment</p>
+            </li>
+          </ul>
+      </nav>
+
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+           
+          </ul>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'PDFile' %}">Make PDF File</a>
+            <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'Back' %}">Back</a>
+        </div>
+      </nav>
+
+      
+<!-- Page content-->
+<div class="container-fluid">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Date</th>
+          <th scope="col">Department</th>
+          <th scope="col">Purpose</th>
+        </tr>
+      </thead>
+      <tbody id="myTable">
+        {% for sec in secufidata %}
+        <tr>
+          <td>{{ sec.name }} {{ sec.last }}</td>
+          <td>{{ sec.date }}</td>
+          <td>{{ sec.dep }}</td>
+          <td>{{ sec.purp }}</td>
+        </tr>
+        {% endfor %}
+    
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+<script src="{% static 'js/search.js'%}"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+</body>
+</html>
